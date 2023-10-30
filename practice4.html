@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Multiplcation Table Generator</title>
+ <style>
+         table, th, td {
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" action="">
+    Specify the limit:
+    <input type="number" name="limitVal" min="1">
+    <input type="submit" value="Generate">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['limitVal'])) {
+    $limit = intval($_POST["limitVal"]);
+    displayTable($limit);
+}
+
+function displayTable($max) {
+    echo "<h3>Multiplication Table up to $max</h3>";
+    echo "<table>";
+
+    // Headers
+    echo "<thead><tr><th>*</th>";
+    for ($col = 1; $col <= $max; $col++) {
+        echo "<th>$col</th>";
+    }
+    echo "</tr></thead>";
+
+    // Rows
+    for ($row = 1; $row <= $max; $row++) {
+        echo "<tr><td><strong>$row</strong></td>";
+        for ($col = 1; $col <= $max; $col++) {
+            $product = $row * $col;
+            echo "<td>$product</td>";
+        }
+        echo "</tr>";
+    }
+
+    echo "</table>";
+}
+?>
+
+</body>
+</html>
