@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Confirmation</title>
+</head>
+<body>
+
+<h2>Set Your Password</h2>
+
+<form id="pwdForm" onsubmit="return confirmPasswords();">
+    <label for="pwdOne">Input Password: </label>
+    <input type="password" id="pwdOne" required><br><br>
+
+    <label for="pwdTwo">Confirm Password: </label>
+    <input type="password" id="pwdTwo" required><br><br>
+
+    <input type="submit" value="Check Consistency">
+</form>
+
+<script>
+    function confirmPasswords() {
+        // Stop the form from submitting by default
+        event.preventDefault();
+
+        const firstPwd = document.getElementById("pwdOne").value;
+        const secondPwd = document.getElementById("pwdTwo").value;
+
+        if (firstPwd.length < 8) {
+            alert("Password should be a minimum of eight characters.");
+            return false;
+        }
+
+        if (firstPwd !== secondPwd) {
+            alert("Passwords don't match. Please check again.");
+            return false;
+        }
+
+        alert("Great! Passwords are consistent.");
+        return true;
+    }
+</script>
+</body>
+</html>
